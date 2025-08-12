@@ -3,34 +3,121 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Проверки онлайн</title>
+<title>Проверки онлайн — Красивый дизайн</title>
+
+<!-- Подключаем Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-  body { font-family: Arial, sans-serif; margin: 20px; max-width: 600px; }
-  h1 { text-align: center; }
-  .section { margin-bottom: 30px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
-  button { padding: 8px 12px; cursor: pointer; }
-  #ip-info { font-size: 1.2em; margin-bottom: 10px; }
-  #speed-result { margin-top: 10px; font-weight: bold; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .section {
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-weight: 600;
+    margin-bottom: 15px;
+    position: relative;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #ff6a00;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  h2:hover::after {
+    width: 100px;
+  }
+
+  #ip-info {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+
+  button {
+    background: #ff6a00;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+    color: white;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 106, 0, 0.5);
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  button:hover {
+    background: #e85c00;
+    transform: scale(1.05);
+  }
+
+  #speed-result {
+    margin-top: 15px;
+    font-weight: 600;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
 </style>
+
 </head>
 <body>
 
 <h1>Быстрые онлайн-проверки</h1>
 
-<div class="section" id="ip-check">
-  <h2>1. Проверка IP-адреса</h2>
-  <div id="ip-info">Загрузка IP...</div>
-  <button id="copy-ip-btn">Скопировать IP</button>
-</div>
+<div class="container">
+  <div class="section" id="ip-check">
+    <h2>1. Проверка IP-адреса</h2>
+    <div id="ip-info">Загрузка IP...</div>
+    <button id="copy-ip-btn">Скопировать IP</button>
+  </div>
 
-<div class="section" id="speed-check">
-  <h2>2. Проверка скорости интернета</h2>
-  <button id="start-speed-test">Начать тест скорости</button>
-  <div id="speed-result"></div>
+  <div class="section" id="speed-check">
+    <h2>2. Проверка скорости интернета</h2>
+    <button id="start-speed-test">Начать тест скорости</button>
+    <div id="speed-result"></div>
+  </div>
 </div>
 
 <script>
-// Проверка IP через ipapi.co
 async function fetchIP() {
   try {
     const response = await fetch('https://ipapi.co/json/');
@@ -42,7 +129,6 @@ async function fetchIP() {
     document.getElementById('ip-info').textContent = 
       `Ваш IP: ${ip}, Город: ${city}, Страна: ${country}`;
 
-    // Сохраним IP для копирования
     window.currentIP = ip;
   } catch {
     document.getElementById('ip-info').textContent = 'Не удалось получить IP.';
@@ -56,10 +142,6 @@ document.getElementById('copy-ip-btn').addEventListener('click', () => {
       .catch(() => alert('Не удалось скопировать IP'));
   }
 });
-
-// Простой тест скорости с использованием openspeedtest
-// https://openspeedtest.com/api.html
-// Этот сервис требует подключения скрипта, но чтобы упростить — сделаем базовый замер загрузки
 
 function speedTest() {
   const startTime = Date.now();
@@ -83,7 +165,6 @@ function speedTest() {
     document.getElementById('speed-result').textContent = 'Ошибка при тестировании скорости.';
   };
 
-  // Размер изображения примерно 1.6 МБ (1,600,000 байт)
   downloadedBytes = 1600000;
   image.src = testImageUrl;
 }
@@ -93,9 +174,7 @@ document.getElementById('start-speed-test').addEventListener('click', () => {
   speedTest();
 });
 
-// Запускаем проверку IP при загрузке страницы
 fetchIP();
-
 </script>
 
 </body>
