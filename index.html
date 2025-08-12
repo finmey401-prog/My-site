@@ -3,34 +3,40 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Проверки онлайн — Красивый дизайн</title>
+<title>Онлайн Проверки — Современный Сайт</title>
 
-<!-- Подключаем Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-<!-- Подключаем CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Быстрые онлайн-проверки</h1>
+<header>
+  <h1>Онлайн Проверки в Одном Месте</h1>
+  <p>Быстро, удобно, без рекламы</p>
+</header>
 
-<div class="container">
-  <div class="section" id="ip-check">
-    <h2>1. Проверка IP-адреса</h2>
-    <div id="ip-info">Загрузка IP...</div>
-    <button id="copy-ip-btn">Скопировать IP</button>
-  </div>
+<main>
+  <section id="ip-check" class="card">
+    <h2>Проверка IP-адреса</h2>
+    <div id="ip-info" class="info loading">Загрузка IP...</div>
+    <button id="copy-ip-btn" class="btn" disabled>Скопировать IP</button>
+  </section>
 
-  <div class="section" id="speed-check">
-    <h2>2. Проверка скорости интернета</h2>
-    <button id="start-speed-test">Начать тест скорости</button>
-    <div id="speed-result"></div>
-  </div>
-</div>
+  <section id="speed-check" class="card">
+    <h2>Тест скорости интернета</h2>
+    <div class="speed-widget-wrapper">
+      <iframe src="https://fast.com" title="Тест скорости" allowfullscreen></iframe>
+    </div>
+  </section>
+</main>
 
-<!-- Подключаем JS -->
+<footer>
+  <small>© 2025 by finmey401-prog. Все права защищены.</small>
+</footer>
+
 <script src="script.js"></script>
-
 </body>
 </html>
